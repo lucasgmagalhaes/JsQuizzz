@@ -13,9 +13,6 @@ input.addEventListener("input", function () {
 btn.addEventListener("click", function () {
     if (input.value) {
         localStorage.setItem("user", input.value);
-        var splitUrl = location.href.split("/");
-        splitUrl[splitUrl.length - 1] = "question.html";
-        container.classList.add("slide-out-left");
-        location.replace(splitUrl.join("/"));
+        redirect("question.html", container);
     }
 });

@@ -6,7 +6,7 @@ interface Question {
   explanation: string;
 }
 
-export const questions: Question[] = [
+const questions: Question[] = [
   {
     name:
       "O comportamento das instâncias presentes de uma classe dentro de um método é definido por",

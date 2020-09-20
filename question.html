@@ -8,14 +8,16 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="form-container slide-in-right">
-      <h4>Question 1</h4>
-      <div class="form-input-container">
-        <button id="iniciar">Iniciar</button
-        ><button id="iniciar">Iniciar</button
-        ><button id="iniciar">Iniciar</button>
-      </div>
+    <div class="form-container slide-in-right" id="form-container">
+      <h4 id="question-number">Question 1</h4>
+      <span id="question-name">
+        O comportamento das instâncias presentes de uma classe dentro de um
+        método é definido por
+      </span>
+      <div class="form-input-container" id="options-container"></div>
     </div>
   </body>
-  <script src="./dist/question.js"></script>
+  <script src="./dist/globals.js"></script>
+  <script src="./dist/models/questions.js"></script>
+  <script src="./dist/questionBuilder.js"></script>
 </html>

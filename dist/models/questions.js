@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.questions = [
+var questions = [
     {
         name: "O comportamento das instâncias presentes de uma classe dentro de um método é definido por",
         answerPosition: 1,

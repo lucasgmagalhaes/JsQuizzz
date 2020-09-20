@@ -42,3 +42,14 @@ input {
 button {
     padding: 5px;
 }
+
+.questionary-button {
+  padding: 23px 0px;
+  margin: 4px 0px;
+  border: 1px thin black;
+  border-radius: 20px;
+  text-decoration:none;
+  outline: 0;
+  background-color: blueviolet;
+  color: white;
+}

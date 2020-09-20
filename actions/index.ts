@@ -15,9 +15,6 @@ input.addEventListener("input", () => {
 btn.addEventListener("click", () => {
   if (input.value) {
     localStorage.setItem("user", input.value);
-    const splitUrl = location.href.split("/");
-    splitUrl[splitUrl.length - 1] = "question.html";
-    container.classList.add("slide-out-left");
-    location.replace(splitUrl.join("/"));
+    redirect("question.html", container);
   }
 });
