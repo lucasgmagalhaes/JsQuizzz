@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",    
+    "outDir": "dist",                           
+    "esModuleInterop": true,
+    "baseUrl": "./actions",                
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["DOM", "ES2015", "ES2016.Array.Include"]
+  }
+}

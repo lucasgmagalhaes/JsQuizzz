@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.4em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-input-container {
+  padding-top: 6em;
+  justify-content: center;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+h4 {
+  padding-bottom: 30px;
+}
+
+input {
+    padding: 5px;
+    margin: 8px 0px;
+}
+
+button {
+    padding: 5px;
+}
