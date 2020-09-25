@@ -1,0 +1,56 @@
+body {
+  padding: 0px 19px;
+  padding-top: 15px;
+}
+.summary {
+  padding: 20px;
+}
+
+.result-question {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #d2d2d2;
+  border-radius: 12px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.option {
+  padding: 7px 0px;
+  margin: 5px;
+  border-radius: 17px;
+  text-align: center;
+  border: 2px solid;
+  width: 100%;
+}
+
+.wrong {
+  color: red;
+}
+
+.correct {
+  color: green;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.question-name {
+  padding-bottom: 10px;
+}
+
+.repeat {
+  margin-top: 15px;
+}
+
+.summary-container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.form-input-container {
+  padding-top: 2em;
+}

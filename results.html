@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/page-transition.css" />
+    <link rel="stylesheet" href="./styles/results.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="slide-in-right">
+      <div class="summary-container">
+        <span class="title">Resultados</span>
+        <span class="summary">
+          {usuario} você acertou {valor}% das respostas.
+        </span>
+      </div>
+      <div class="form-input-container" id="options-container">
+        <div class="result-question">
+          <span class="question-name"
+            >O comportamento das instâncias presentes de uma classe dentro de um
+            método é definido por</span
+          >
+          <span class="option correct">Funções</span>
+          <span class="option wrong">Classes</span>
+          <span class="option wrong">Interfaces</span>
+        </div>
+
+        <div class="result-question">
+          <span class="question-name"
+            >O comportamento das instâncias presentes de uma classe dentro de um
+            método é definido por</span
+          >
+          <span class="option correct">Funções</span>
+          <span class="option wrong">Classes</span>
+          <span class="option wrong">Interfaces</span>
+        </div>
+      </div>
+
+      <button class="repeat">Repetir teste</button>
+    </div>
+  </body>
+  <script src="./dist/globals.js"></script>
+  <script src="./dist/results.js"></script>
+</html>
