@@ -1,13 +1,15 @@
 interface Question {
-  name: string;
-  code?: string;
-  options: string[];
-  answerPosition: number;
-  explanation: string;
+  readonly name: string;
+  readonly id: string;
+  readonly code?: string;
+  readonly options: string[];
+  readonly answerPosition: number;
+  readonly explanation: string;
 }
 
 const questions: Question[] = [
   {
+    id: "43616EC3-7454-4440-8AB3-8DF093AB72E4",
     name:
       "O comportamento das instâncias presentes de uma classe dentro de um método é definido por",
     answerPosition: 1,
@@ -16,6 +18,7 @@ const questions: Question[] = [
       "Os objetos da classe também são conhecidos como instâncias da classe. O comportamento da instância de uma classe é definido pela classe e é compartilhado por todas as instâncias.",
   },
   {
+    id: "98D9A410-BD6E-45A2-AED9-7C3ECA43F3EB",
     name:
       "A palavra-chave ou a propriedade que você usa para se referir a um objeto através do qual eles foram chamados é",
     answerPosition: 2,
@@ -24,6 +27,7 @@ const questions: Question[] = [
       "'This' palavra-chave é usada para se referir ao objeto através do qual as propriedades ou métodos foram invocados. Este uso de 'this' é uma característica fundamental dos métodos de qualquer classe.",
   },
   {
+    id: "6DB5C7C0-20B9-427B-9BC0-881143843368",
     name: "Qual será a saída do seguinte código JavaScript?",
     code: "var o = new F();\no.constructor === F",
     options: ["false", "true", "0", "1"],
@@ -32,6 +36,7 @@ const questions: Question[] = [
       "Construtor é uma propriedade de função da classe que é usada para criar objetos dessa classe. No código acima, ambas as instruções criam uma instância da classe.",
   },
   {
+    id: "1507B8E8-65FF-4785-987F-0906271EF061",
     name: "A diferença básica entre JavaScript e Java é...",
     answerPosition: 3,
     options: [
@@ -44,6 +49,7 @@ const questions: Question[] = [
       "Java é uma linguagem de programação OOP, enquanto o JavaScript é uma linguagem de script OOP. A diferença básica entre JavaScript e Java é que as funções são valores e não há distinção rígida entre métodos e campos.",
   },
   {
+    id: "4F0560FD-768F-4779-9AE5-27EC55EE2206",
     name: "O significado para classes de aumento é que",
     answerPosition: 0,
     options: [
@@ -58,6 +64,7 @@ const questions: Question[] = [
       " adicionando novos métodos a seus objetos de protótipo.",
   },
   {
+    id: "15ADBDCE-1F18-4C7A-A8A3-2E1FEC6D5311",
     name: "Quando uma classe B pode estender outra classe A, nós que...",
     answerPosition: 0,
     options: [
@@ -71,6 +78,7 @@ const questions: Question[] = [
       " chamadas de extensões da superclasse. Portanto, no cenário acima, A será a superclasse e B, a subclasse.",
   },
   {
+    id: "C35F4860-0781-4B9F-B951-C8FA6ED2C3AC",
     name:
       " O método que pode ser usado para criar novas propriedades e também para modificar os atributos de propriedades existentes é _________",
     answerPosition: 2,
