@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",                          
-    "module": "None",    
-    "outDir": "dist",                           
+    "target": "es5",
+    "module": "None",
+    "outDir": "dist",
     "esModuleInterop": true,
-    "baseUrl": "./actions",                
+    "baseUrl": "./actions",
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "ES2015", "ES2016.Array.Include"]
   }

@@ -18,3 +18,5 @@ btn.addEventListener("click", () => {
     redirect("question.html", container);
   }
 });
+
+navigator.serviceWorker.register("../serviceWorker.js");
