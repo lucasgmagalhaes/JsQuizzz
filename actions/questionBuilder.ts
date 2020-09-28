@@ -2,10 +2,22 @@ const questionNumberLabel = getElementById<HTMLHeadingElement>(
   "question-number"
 );
 const questionNameLabel = getElementById<HTMLHeadingElement>("question-name");
+const QUESTIONS_AMOUNT_NECESSARY = 5;
+
+interface PickedAnswer {
+  questionId: string;
+  answerChosen: number;
+}
 
 const picked = pickQuestions();
 const questionNumber = getActualQuestion();
-const question = picked[questionNumber];
+const answers = getAnswers();
+const question =
+  picked[
+    questionNumber > QUESTIONS_AMOUNT_NECESSARY
+      ? questionNumber - 1
+      : picked.length - 1
+  ];
 
 questionNumberLabel.innerText = `Pergunta ${questionNumber}`;
 questionNameLabel.innerText = question.name;
@@ -21,11 +33,10 @@ function pickQuestions() {
 
   let hasRequiredAmount = false;
   let pickedQuestions: Question[] = [];
-  const QUESTIONS_AMOUNT_NECESSARY = 5;
 
   while (!hasRequiredAmount) {
     const picked = questions[Math.floor(Math.random() * questions.length)];
-    if (!pickedQuestions.some((pq) => pq.name === picked.name)) {
+    if (!pickedQuestions.some((pq) => pq.id === picked.id)) {
       pickedQuestions.push(picked);
       if (pickedQuestions.length === QUESTIONS_AMOUNT_NECESSARY) {
         hasRequiredAmount = true;
@@ -38,7 +49,7 @@ function pickQuestions() {
 }
 
 function getActualQuestion() {
-  const question = localStorage.getItem("question");
+  const question = localStorage.getItem("number");
   if (question) {
     return +question;
   }
@@ -60,8 +71,22 @@ function generateButtons(options: string[]) {
 }
 
 function optionClickRedirect(optionIndex: number) {
-  localStorage.setItem("question", `${optionIndex + 1}`);
-  redirect("question.html", getElementById("form-container"));
+  localStorage.setItem("number", `${questionNumber + 1}`);
+
+  const questionToAnswer = answers.find((q) => q.questionId === question.id);
+  if (questionToAnswer) {
+    questionToAnswer.answerChosen = optionIndex;
+  } else {
+    answers.push({ questionId: question.id, answerChosen: optionIndex });
+  }
+
+  updateAnswers(answers);
+
+  if (questionNumber === QUESTIONS_AMOUNT_NECESSARY) {
+    redirect("results.html", getElementById("form-container"));
+  } else {
+    redirect("question.html", getElementById("form-container"));
+  }
 }
 
 function getElementById<T extends HTMLElement>(id: string) {

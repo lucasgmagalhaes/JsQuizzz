@@ -14,6 +14,7 @@ input.addEventListener("input", () => {
 
 btn.addEventListener("click", () => {
   if (input.value) {
+    localStorage.clear();
     localStorage.setItem("user", input.value);
     redirect("question.html", container);
   }

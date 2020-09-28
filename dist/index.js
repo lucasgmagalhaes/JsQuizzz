@@ -12,8 +12,10 @@ input.addEventListener("input", function () {
 });
 btn.addEventListener("click", function () {
     if (input.value) {
+        localStorage.clear();
         localStorage.setItem("user", input.value);
         redirect("question.html", container);
     }
 });
 navigator.serviceWorker.register("../serviceWorker.js");
+//# sourceMappingURL=index.js.map
