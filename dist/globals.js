@@ -4,6 +4,7 @@ function redirect(page, containerElement) {
     splitUrl[splitUrl.length - 1] = page;
     containerElement.classList.add("slide-out-left");
     location.replace(splitUrl.join("/"));
+    location.reload();
 }
 function getAnswers() {
     var answers = localStorage.getItem(ANSWERS_KEY);

@@ -7,7 +7,8 @@ var answers = getAnswers();
 var question = picked[questionNumber > QUESTIONS_AMOUNT_NECESSARY
     ? questionNumber - 1
     : picked.length - 1];
-questionNumberLabel.innerText = "Pergunta " + questionNumber;
+console.log("TESTE");
+questionNumberLabel.innerText = "Pergunta " + (questionNumber + 1);
 questionNameLabel.innerText = question.name;
 generateButtons(question.options);
 function pickQuestions() {
@@ -56,7 +57,7 @@ function generateButtons(options) {
     }
 }
 function optionClickRedirect(optionIndex) {
-    localStorage.setItem("number", "" + (questionNumber + 1));
+    localStorage.setItem("number", "" + ++questionNumber);
     var questionToAnswer = answers.find(function (q) { return q.questionId === question.id; });
     if (questionToAnswer) {
         questionToAnswer.answerChosen = optionIndex;
@@ -66,10 +67,10 @@ function optionClickRedirect(optionIndex) {
     }
     updateAnswers(answers);
     if (questionNumber === QUESTIONS_AMOUNT_NECESSARY) {
-        redirect("results.html", getElementById("form-container"));
+        redirect("results.html?t=" + question.id, getElementById("form-container"));
     }
     else {
-        redirect("question.html", getElementById("form-container"));
+        redirect("question.html?t=" + question.id, getElementById("form-container"));
     }
 }
 function getElementById(id) {

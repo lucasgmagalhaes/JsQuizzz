@@ -5,6 +5,7 @@ function redirect(page: string, containerElement: HTMLElement) {
   splitUrl[splitUrl.length - 1] = page;
   containerElement.classList.add("slide-out-left");
   location.replace(splitUrl.join("/"));
+  location.reload();
 }
 
 function getAnswers() {

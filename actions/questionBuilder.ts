@@ -9,17 +9,19 @@ interface PickedAnswer {
   answerChosen: number;
 }
 
-const picked = pickQuestions();
-const questionNumber = getActualQuestion();
-const answers = getAnswers();
-const question =
+let picked = pickQuestions();
+let questionNumber = getActualQuestion();
+let answers = getAnswers();
+let question =
   picked[
     questionNumber > QUESTIONS_AMOUNT_NECESSARY
       ? questionNumber - 1
       : picked.length - 1
   ];
 
-questionNumberLabel.innerText = `Pergunta ${questionNumber}`;
+console.log("TESTE");
+
+questionNumberLabel.innerText = `Pergunta ${questionNumber + 1}`;
 questionNameLabel.innerText = question.name;
 
 generateButtons(question.options);
@@ -71,7 +73,7 @@ function generateButtons(options: string[]) {
 }
 
 function optionClickRedirect(optionIndex: number) {
-  localStorage.setItem("number", `${questionNumber + 1}`);
+  localStorage.setItem("number", `${++questionNumber}`);
 
   const questionToAnswer = answers.find((q) => q.questionId === question.id);
   if (questionToAnswer) {
@@ -83,9 +85,9 @@ function optionClickRedirect(optionIndex: number) {
   updateAnswers(answers);
 
   if (questionNumber === QUESTIONS_AMOUNT_NECESSARY) {
-    redirect("results.html", getElementById("form-container"));
+    redirect("results.html?t="+ question.id, getElementById("form-container"));
   } else {
-    redirect("question.html", getElementById("form-container"));
+    redirect("question.html?t="+ question.id, getElementById("form-container"));
   }
 }
 
