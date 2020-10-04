@@ -27,11 +27,13 @@ body {
 }
 
 .wrong {
-  color: red;
+  color: #fff;
+  background-color: #e55934;
 }
 
 .correct {
-  color: green;
+  color: #fff;
+  background-color: #78a913;
 }
 
 .title {
@@ -42,7 +44,8 @@ body {
   padding-bottom: 10px;
 }
 
-.repeat, .initialScreen {
+.repeat,
+.initialScreen {
   margin-top: 15px;
   width: 30%;
   min-width: 200px;
@@ -52,7 +55,7 @@ body {
   border-radius: 20px;
   text-decoration: none;
   outline: 0;
-  background-color: #2CA5E0;
+  background-color: #2ca5e0;
   font-size: 17px;
   color: white;
 }
@@ -72,5 +75,13 @@ body {
 .form-input-container {
   padding-top: 2em;
   align-items: center;
-  
+}
+
+.picked {
+  content: "";
+}
+.picked:before {
+  content: "⮞";
+  margin-left: -27px;
+  position: absolute;
 }
