@@ -11,6 +11,8 @@ this.addEventListener("install", () => {
       "/question.html",
       "/results.html",
       "/styles/global.css",
+      "/styles/index.css",
+      "/styles/input.css",
       "/styles/page-transition.css",
       "/styles/question.css",
       "/styles/results.css",

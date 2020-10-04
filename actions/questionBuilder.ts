@@ -1,40 +1,43 @@
-const questionNumberLabel = getElementById<HTMLHeadingElement>(
-  "question-number"
-);
-const questionNameLabel = getElementById<HTMLHeadingElement>("question-name");
+const questionNumberLabel = getElementById("question-number");
+const questionNameLabel = getElementById("question-name");
 const QUESTIONS_AMOUNT_NECESSARY = 5;
 
-interface PickedAnswer {
-  questionId: string;
-  answerChosen: number;
+function generateQuestion() {
+  let picked = pickQuestions();
+  let questionNumber = getActualQuestionNumber();
+  let question = getActualQuestion(picked, questionNumber);
+  const inputContainer = getElementById("options-container");
+
+  questionNumberLabel.innerText = `Pergunta ${questionNumber + 1}`;
+  questionNameLabel.innerText = question.name;
+
+  if (question.code) {
+    const codeSpan = document.createElement("span");
+    codeSpan.classList.add("code");
+    codeSpan.innerText = question.code;
+    inputContainer.appendChild(codeSpan);
+  }
+
+  generateButtons(question.options, inputContainer);
 }
 
-let picked = pickQuestions();
-let questionNumber = getActualQuestion();
-let answers = getAnswers();
-let question =
-  picked[
+function getActualQuestion(picked: Question[], questionNumber: number) {
+  return picked[
     questionNumber > QUESTIONS_AMOUNT_NECESSARY
-      ? questionNumber - 1
-      : picked.length - 1
+      ? picked.length - 1
+      : questionNumber
   ];
+}
 
-console.log("TESTE");
-
-questionNumberLabel.innerText = `Pergunta ${questionNumber + 1}`;
-questionNameLabel.innerText = question.name;
-
-generateButtons(question.options);
-
-function pickQuestions() {
+function pickQuestions(): Question[] {
   const pickedQuestionsJSON = localStorage.getItem("questions");
 
   if (pickedQuestionsJSON) {
-    return JSON.parse(pickedQuestionsJSON) as Question[];
+    return JSON.parse(pickedQuestionsJSON);
   }
 
   let hasRequiredAmount = false;
-  let pickedQuestions: Question[] = [];
+  let pickedQuestions = [];
 
   while (!hasRequiredAmount) {
     const picked = questions[Math.floor(Math.random() * questions.length)];
@@ -50,7 +53,7 @@ function pickQuestions() {
   return pickedQuestions;
 }
 
-function getActualQuestion() {
+function getActualQuestionNumber() {
   const question = localStorage.getItem("number");
   if (question) {
     return +question;
@@ -58,8 +61,7 @@ function getActualQuestion() {
   return 1;
 }
 
-function generateButtons(options: string[]) {
-  const inputContainer = getElementById<HTMLDivElement>("options-container");
+function generateButtons(options: string[], container: HTMLElement) {
   if (options) {
     for (let i = 0; i < options.length; i++) {
       const newButton = document.createElement("button");
@@ -67,13 +69,18 @@ function generateButtons(options: string[]) {
       newButton.id = `op${i}`;
       newButton.textContent = options[i];
       newButton.addEventListener("click", () => optionClickRedirect(i));
-      inputContainer.appendChild(newButton);
+      container.appendChild(newButton);
     }
   }
 }
 
 function optionClickRedirect(optionIndex: number) {
-  localStorage.setItem("number", `${++questionNumber}`);
+  let questionNumber = getActualQuestionNumber();
+  let answers = getAnswers();
+  let picked = pickQuestions();
+  let question = getActualQuestion(picked, questionNumber);
+
+  localStorage.setItem("number", `${questionNumber + 1}`);
 
   const questionToAnswer = answers.find((q) => q.questionId === question.id);
   if (questionToAnswer) {
@@ -84,13 +91,15 @@ function optionClickRedirect(optionIndex: number) {
 
   updateAnswers(answers);
 
-  if (questionNumber === QUESTIONS_AMOUNT_NECESSARY) {
-    redirect("results.html?t="+ question.id, getElementById("form-container"));
+  if (questionNumber + 1 === QUESTIONS_AMOUNT_NECESSARY) {
+    redirect("results.html", getElementById("form-container"));
   } else {
-    redirect("question.html?t="+ question.id, getElementById("form-container"));
+    redirect("question.html", getElementById("form-container"));
   }
 }
 
 function getElementById<T extends HTMLElement>(id: string) {
   return document.getElementById(id) as T;
 }
+
+generateQuestion();

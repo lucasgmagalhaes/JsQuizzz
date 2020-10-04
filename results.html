@@ -34,10 +34,10 @@
     <title>JsQuizz</title>
   </head>
   <body>
-    <div class="slide-in-right">
+    <div class="form-container slide-in-right" id="container">
       <div class="summary-container">
         <span class="title">Resultados</span>
-        <span class="summary">
+        <span class="summary" id="summary">
           {usuario} você acertou {valor}% das respostas.
         </span>
       </div>
@@ -61,9 +61,12 @@
           <span class="option wrong">Classes</span>
           <span class="option wrong">Interfaces</span>
         </div>
+
+        <button class="repeat" id="repeatTest">Repetir teste</button>
+        <button class="initialScreen" id="initialScreen">Voltar para tela inicial</button>
       </div>
 
-      <button class="repeat" id="repeatTest">Repetir teste</button>
+      
     </div>
   </body>
   <script src="./dist/index.js"></script>

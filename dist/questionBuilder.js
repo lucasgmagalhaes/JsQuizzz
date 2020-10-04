@@ -1,16 +1,26 @@
 var questionNumberLabel = getElementById("question-number");
 var questionNameLabel = getElementById("question-name");
 var QUESTIONS_AMOUNT_NECESSARY = 5;
-var picked = pickQuestions();
-var questionNumber = getActualQuestion();
-var answers = getAnswers();
-var question = picked[questionNumber > QUESTIONS_AMOUNT_NECESSARY
-    ? questionNumber - 1
-    : picked.length - 1];
-console.log("TESTE");
-questionNumberLabel.innerText = "Pergunta " + (questionNumber + 1);
-questionNameLabel.innerText = question.name;
-generateButtons(question.options);
+function generateQuestion() {
+    var picked = pickQuestions();
+    var questionNumber = getActualQuestionNumber();
+    var question = getActualQuestion(picked, questionNumber);
+    var inputContainer = getElementById("options-container");
+    questionNumberLabel.innerText = "Pergunta " + (questionNumber + 1);
+    questionNameLabel.innerText = question.name;
+    if (question.code) {
+        var codeSpan = document.createElement("span");
+        codeSpan.classList.add("code");
+        codeSpan.innerText = question.code;
+        inputContainer.appendChild(codeSpan);
+    }
+    generateButtons(question.options, inputContainer);
+}
+function getActualQuestion(picked, questionNumber) {
+    return picked[questionNumber > QUESTIONS_AMOUNT_NECESSARY
+        ? picked.length - 1
+        : questionNumber];
+}
 function pickQuestions() {
     var pickedQuestionsJSON = localStorage.getItem("questions");
     if (pickedQuestionsJSON) {
@@ -19,9 +29,9 @@ function pickQuestions() {
     var hasRequiredAmount = false;
     var pickedQuestions = [];
     var _loop_1 = function () {
-        var picked_1 = questions[Math.floor(Math.random() * questions.length)];
-        if (!pickedQuestions.some(function (pq) { return pq.id === picked_1.id; })) {
-            pickedQuestions.push(picked_1);
+        var picked = questions[Math.floor(Math.random() * questions.length)];
+        if (!pickedQuestions.some(function (pq) { return pq.id === picked.id; })) {
+            pickedQuestions.push(picked);
             if (pickedQuestions.length === QUESTIONS_AMOUNT_NECESSARY) {
                 hasRequiredAmount = true;
             }
@@ -33,15 +43,14 @@ function pickQuestions() {
     localStorage.setItem("questions", JSON.stringify(pickedQuestions));
     return pickedQuestions;
 }
-function getActualQuestion() {
+function getActualQuestionNumber() {
     var question = localStorage.getItem("number");
     if (question) {
         return +question;
     }
     return 1;
 }
-function generateButtons(options) {
-    var inputContainer = getElementById("options-container");
+function generateButtons(options, container) {
     if (options) {
         var _loop_2 = function (i) {
             var newButton = document.createElement("button");
@@ -49,7 +58,7 @@ function generateButtons(options) {
             newButton.id = "op" + i;
             newButton.textContent = options[i];
             newButton.addEventListener("click", function () { return optionClickRedirect(i); });
-            inputContainer.appendChild(newButton);
+            container.appendChild(newButton);
         };
         for (var i = 0; i < options.length; i++) {
             _loop_2(i);
@@ -57,7 +66,11 @@ function generateButtons(options) {
     }
 }
 function optionClickRedirect(optionIndex) {
-    localStorage.setItem("number", "" + ++questionNumber);
+    var questionNumber = getActualQuestionNumber();
+    var answers = getAnswers();
+    var picked = pickQuestions();
+    var question = getActualQuestion(picked, questionNumber);
+    localStorage.setItem("number", "" + (questionNumber + 1));
     var questionToAnswer = answers.find(function (q) { return q.questionId === question.id; });
     if (questionToAnswer) {
         questionToAnswer.answerChosen = optionIndex;
@@ -66,14 +79,15 @@ function optionClickRedirect(optionIndex) {
         answers.push({ questionId: question.id, answerChosen: optionIndex });
     }
     updateAnswers(answers);
-    if (questionNumber === QUESTIONS_AMOUNT_NECESSARY) {
-        redirect("results.html?t=" + question.id, getElementById("form-container"));
+    if (questionNumber + 1 === QUESTIONS_AMOUNT_NECESSARY) {
+        redirect("results.html", getElementById("form-container"));
     }
     else {
-        redirect("question.html?t=" + question.id, getElementById("form-container"));
+        redirect("question.html", getElementById("form-container"));
     }
 }
 function getElementById(id) {
     return document.getElementById(id);
 }
+generateQuestion();
 //# sourceMappingURL=questionBuilder.js.map

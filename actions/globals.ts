@@ -5,13 +5,12 @@ function redirect(page: string, containerElement: HTMLElement) {
   splitUrl[splitUrl.length - 1] = page;
   containerElement.classList.add("slide-out-left");
   location.replace(splitUrl.join("/"));
-  location.reload();
 }
 
 function getAnswers() {
   const answers = localStorage.getItem(ANSWERS_KEY);
   if (answers) {
-    return JSON.parse(answers) as PickedAnswer[];
+    return JSON.parse(answers);
   }
   return [];
 }

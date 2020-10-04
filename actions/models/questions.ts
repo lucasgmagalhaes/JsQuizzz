@@ -7,7 +7,7 @@ interface Question {
   readonly explanation: string;
 }
 
-const questions: Question[] = [
+const questions = [
   {
     id: "43616EC3-7454-4440-8AB3-8DF093AB72E4",
     name:

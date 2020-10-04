@@ -16,7 +16,7 @@ btn.addEventListener("click", () => {
   if (input.value) {
     localStorage.clear();
     localStorage.setItem("user", input.value);
-    localStorage.setItem("number", "1");
+    localStorage.setItem("number", "0");
     redirect("question.html", container);
   }
 });

@@ -5,15 +5,16 @@
 
 html,
 body {
+  font-family: Roboto, Verdana;
+  font-weight: 500;
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: white;
+  background-color: #f3fcf0;
   overflow-x: hidden;
 }
 
 .form-container {
-  display: flex;
   flex-direction: column;
   padding: 0 1.4em;
   align-items: center;
@@ -21,8 +22,12 @@ body {
   width: 100%;
 }
 
+.flex {
+  display: flex;
+}
+
 .form-input-container {
-  padding-top: 6em;
+  padding-top: 14px;
   justify-content: center;
   display: flex;
   align-content: center;
@@ -32,24 +37,61 @@ body {
 
 h4 {
   padding-bottom: 30px;
+  font-size: 28px;
+  color: #f9db6d;
 }
 
-input {
-    padding: 5px;
-    margin: 8px 0px;
+.app-name {
+  padding-bottom: 30px;
+  font-size: 46px;
+  color: #f9db6d;
+  padding: 15px;
+  border: 1px solid;
+  border-radius: 21px;
 }
 
 button {
-    padding: 5px;
+  padding: 5px;
 }
 
 .questionary-button {
   padding: 23px 0px;
   margin: 4px 0px;
-  border: 1px thin black;
+  border: none;
   border-radius: 20px;
-  text-decoration:none;
+  text-decoration: none;
   outline: 0;
-  background-color: blueviolet;
+  background-color: #464D77;
   color: white;
+}
+
+.btn {
+  background: #F9DB6D;
+  color: #fff;
+  display: inline-block;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  text-overflow: ellipsis;
+  transition: 0.2s box-shadow ease-in-out, 0.2s background-color ease-in-out;
+  white-space: nowrap;
+  padding: 1.4em 2em;
+  min-width: 200px;
+  max-width: 500px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  outline: 0;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background: darken(#0077b5, 5%);
+}
+
+.btn,
+.btn-default {
+  background: #877666;
 }
