@@ -6,8 +6,19 @@ function loadResults() {
   const questions = JSON.parse(localStorage.getItem("questions")) as Question[];
   const ans = JSON.parse(localStorage.getItem("ans"));
   const hits = calcHitsPercentage(questions, ans);
-  summary.innerHTML = `${user} você acertou ${hits}% das respostas.`;
+
+  summary.innerHTML = getSummaryTestBasedOnHits(hits, user);
   addResponseToDOM(questions, ans);
+}
+
+function getSummaryTestBasedOnHits(hits: number, user: string) {
+  if (hits === 0) {
+    return `${user}, você conseguiu acertar um total de 0 (ZERO) respostas 😥.`;
+  }
+  if (hits === 100) {
+    return `${user}, você acertou todas as respostas. Uau.`;
+  }
+  return `${user}, você acertou ${hits}% das respostas.`;
 }
 
 function calcHitsPercentage(questions: Question[], ans: PickedAnswer[]) {
@@ -30,34 +41,44 @@ function addResponseToDOM(questions: Question[], ans: PickedAnswer[]) {
     const resultContainer = document.createElement("div");
     resultContainer.classList.add("result-question");
 
-    const questionNameLabel = document.createElement("span");
-    questionNameLabel.classList.add("question-name");
-    questionNameLabel.innerText = question.name;
-    resultContainer.appendChild(questionNameLabel);
+    createQuestionNameLabel(question, resultContainer);
 
     for (let i = 0; i <= question.options.length - 1; i++) {
-      const optionLabel = document.createElement("span");
-      optionLabel.classList.add("option");
-      optionLabel.innerText = question.options[i];
-
-      const pickedOption = ans.find(
-        (answer) => answer.questionId === question.id
-      );
-
-      if (pickedOption.answerChosen === question.answerPosition) {
-        optionLabel.classList.add("correct");
-      } else {
-        optionLabel.classList.add("wrong");
-      }
-
-      if (pickedOption.answerChosen == i) {
-        optionLabel.classList.add("picked");
-      }
-
+      const optionLabel = createOptionLabel(question, i, ans);
       resultContainer.appendChild(optionLabel);
     }
     questionsContainer.appendChild(resultContainer);
   });
+}
+
+function createQuestionNameLabel(
+  question: Question,
+  resultContainer: HTMLElement
+) {
+  const questionNameLabel = document.createElement("span");
+  questionNameLabel.classList.add("question-name");
+  questionNameLabel.innerText = question.name;
+  resultContainer.appendChild(questionNameLabel);
+}
+
+function createOptionLabel(question: Question, i: number, ans: PickedAnswer[]) {
+  const optionLabel = document.createElement("span");
+  optionLabel.classList.add("option");
+  optionLabel.innerText = question.options[i];
+
+  const pickedOption = ans.find((answer) => answer.questionId === question.id);
+
+  if (pickedOption.answerChosen === question.answerPosition) {
+    optionLabel.classList.add("correct");
+  } else {
+    optionLabel.classList.add("wrong");
+  }
+
+  if (pickedOption.answerChosen == i) {
+    optionLabel.classList.add("picked");
+  }
+
+  return optionLabel;
 }
 
 function addRepeatTestButton() {
@@ -65,7 +86,8 @@ function addRepeatTestButton() {
   repeatTestBtn.classList.add("repeat");
   repeatTestBtn.innerText = "Repetir teste";
   repeatTestBtn.addEventListener("click", () => {
-    localStorage.clear();
+    localStorage.removeItem("questions");
+    localStorage.removeItem("ans");
     localStorage.setItem("question", "0");
     redirect("question.html", container);
   });

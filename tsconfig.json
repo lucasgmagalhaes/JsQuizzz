@@ -7,6 +7,6 @@
     "baseUrl": "./actions",
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "ES2015", "ES2016.Array.Include"],
-    "sourceMap": true
+    "sourceMap": false
   }
 }

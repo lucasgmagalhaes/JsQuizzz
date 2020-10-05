@@ -19,4 +19,3 @@ btn.addEventListener("click", function () {
     }
 });
 //navigator.serviceWorker.register("../serviceWorker.js");
-//# sourceMappingURL=index.js.map

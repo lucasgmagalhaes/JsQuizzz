@@ -74,4 +74,3 @@ var questions = [
             " objeto e retorna o objeto. Ambos Object.defineProperty () e Object.defineProperties () podem ser usados para definir novas propriedades.",
     },
 ];
-//# sourceMappingURL=questions.js.map
