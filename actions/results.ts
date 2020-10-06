@@ -28,6 +28,13 @@ function calcHitsPercentage(questions: Question[], ans: PickedAnswer[]) {
       (answer) => answer.questionId === question.id
     );
 
+    if (!pickedOption) {
+      alert(
+        "Ocorreu um erro na montagem do relatório de resultado. Por favor, começe o teste novamente"
+      );
+      return;
+    }
+
     if (pickedOption.answerChosen === question.answerPosition) {
       hit++;
     }
@@ -68,7 +75,7 @@ function createOptionLabel(question: Question, i: number, ans: PickedAnswer[]) {
 
   const pickedOption = ans.find((answer) => answer.questionId === question.id);
 
-  if (pickedOption.answerChosen === question.answerPosition) {
+  if (question.answerPosition === i) {
     optionLabel.classList.add("correct");
   } else {
     optionLabel.classList.add("wrong");
@@ -88,7 +95,7 @@ function addRepeatTestButton() {
   repeatTestBtn.addEventListener("click", () => {
     localStorage.removeItem("questions");
     localStorage.removeItem("ans");
-    localStorage.setItem("question", "0");
+    localStorage.setItem("number", "0");
     redirect("question.html", container);
   });
   questionsContainer.appendChild(repeatTestBtn);

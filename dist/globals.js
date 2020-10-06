@@ -17,3 +17,4 @@ function updateAnswers(answers) {
         localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
     }
 }
+//# sourceMappingURL=globals.js.map

@@ -90,3 +90,4 @@ function getElementById(id) {
     return document.getElementById(id);
 }
 generateQuestion();
+//# sourceMappingURL=questionBuilder.js.map
