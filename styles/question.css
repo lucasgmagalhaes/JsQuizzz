@@ -5,6 +5,7 @@
 
 .code {
   background: #f4f4f4;
+  white-space: pre;
   border: 1px solid #ddd;
   border-left: 3px solid #f36d33;
   color: #666;
@@ -15,11 +16,34 @@
   margin-bottom: 1.6em;
   max-width: 100%;
   overflow: auto;
-  padding: 1em 1.5em;
+  padding: 1px;
   display: block;
   word-wrap: break-word;
 }
 
 .form-input-container {
-  max-width: 600px;
+  max-width: 90%;
 }
+
+@media (min-width: 600px) {
+  .form-input-container {
+    max-width: 600px;
+  }
+}
+
+/* @media (min-width: 481px) and (max-width: 767px) {
+  .form-input-container {
+    max-width: 324px;
+  }
+}
+@media (min-width: 481px) and (max-width: 481px) {
+  .form-input-container {
+    max-width: 324px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 360px) {
+  .form-input-container {
+    max-width: 291px;
+  }
+} */

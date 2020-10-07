@@ -22,5 +22,7 @@ if (input) {
         }
     });
 }
+console.log("É possível ver todas as respostas no source do código.");
+console.log("As perguntas foram tiradas do repositório: https://github.com/lydiahallie/javascript-questions/blob/master/pt-BR/README_pt_BR.md");
 navigator.serviceWorker.register("../serviceWorker.js");
 //# sourceMappingURL=index.js.map

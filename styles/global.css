@@ -16,7 +16,6 @@ body {
 
 .form-container {
   flex-direction: column;
-  padding: 0 1.4em;
   align-items: center;
   justify-content: center;
   width: 100%;
