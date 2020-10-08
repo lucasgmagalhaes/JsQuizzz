@@ -6,17 +6,3 @@ function redirect(page: string, containerElement: HTMLElement) {
   containerElement.classList.add("slide-out-left");
   location.replace(splitUrl.join("/"));
 }
-
-function getAnswers() {
-  const answers = localStorage.getItem(ANSWERS_KEY);
-  if (answers) {
-    return JSON.parse(answers);
-  }
-  return [];
-}
-
-function updateAnswers(answers: PickedAnswer[]) {
-  if (answers) {
-    localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
-  }
-}

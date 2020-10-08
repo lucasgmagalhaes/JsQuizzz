@@ -1,6 +1,18 @@
 var questionNumberLabel = getElementById("question-number");
 var questionNameLabel = getElementById("question-name");
 var QUESTIONS_AMOUNT_NECESSARY = 5;
+function getAnswers() {
+    var answers = localStorage.getItem(ANSWERS_KEY);
+    if (answers) {
+        return JSON.parse(answers);
+    }
+    return [];
+}
+function updateAnswers(answers) {
+    if (answers) {
+        localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
+    }
+}
 function generateQuestion() {
     var picked = pickQuestions();
     var questionNumber = getActualQuestionNumber();

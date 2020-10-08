@@ -2,6 +2,20 @@ const questionNumberLabel = getElementById("question-number");
 const questionNameLabel = getElementById("question-name");
 const QUESTIONS_AMOUNT_NECESSARY = 5;
 
+function getAnswers() {
+  const answers = localStorage.getItem(ANSWERS_KEY);
+  if (answers) {
+    return JSON.parse(answers);
+  }
+  return [];
+}
+
+function updateAnswers(answers: PickedAnswer[]) {
+  if (answers) {
+    localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
+  }
+}
+
 function generateQuestion() {
   let picked = pickQuestions();
   let questionNumber = getActualQuestionNumber();
