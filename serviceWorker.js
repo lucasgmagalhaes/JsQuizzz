@@ -40,7 +40,8 @@ this.addEventListener("install", () => {
   });
 });
 
-self.addEventListener("activate", (e) => {
+
+self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keyList) => {
       return Promise.all(
@@ -54,15 +55,15 @@ self.addEventListener("activate", (e) => {
   );
 });
 
-self.addEventListener('fetch', (event) => {
-  let resposta = caches.open(cacheName).then((cache) => {
-    return cache.match(event.request).then((recurso) => {
-      if (recurso) return recurso;
-      return fetch(event.request).then((recurso) => {
-        cache.put(event.request, recurso.clone());
-        return recurso;
-      });
-    });
-  });
-  event.respondWith(resposta);
+self.addEventListener('fetch', function (event) { 
+  let resposta = caches.open(cacheName).then((cache) => { 
+    return cache.match(event.request).then((recurso) => { 
+      if (recurso) return recurso; 
+      return fetch(event.request).then((recurso) => { 
+        cache.put(event.request, recurso.clone()); 
+        return recurso; 
+      }); 
+    }); 
+  }); 
+  event.respondWith(resposta); 
 });
